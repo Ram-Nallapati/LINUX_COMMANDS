@@ -1,0 +1,205 @@
+Here is a comprehensive list of Linux commands utilizing regular expressions (regex), focusing on tasks that are particularly useful for an
+SDE (Software Development Engineer) role:
+
+
+
+------------------- Basic Regex Concepts in Linux --------------------------
+
+
+Match any character:  .
+
+Match the start of a line:  ^
+
+Match the end of a line:  $
+
+Match zero or more of the preceding character:  *
+
+Match one or more of the preceding character:  +
+
+Match zero or one of the preceding character:  ?
+
+Group characters: ()
+
+Match any one of several characters:  []
+
+Exclude specific characters:  [^]
+
+Alternation (OR operator):  |
+
+Match specific character ranges:  [a-z], [A-Z], [0-9]
+
+Escape special characters:  \
+
+
+
+
+------------------------ Commands Leveraging Regex ------------------------------
+
+----------  grep - Search for Patterns ----------
+
+Basic Search:
+        grep 'pattern' file.txt
+
+
+Search with regex:
+        grep -E 'regex_pattern' file.txt
+
+
+Match lines that begin with a string:
+        grep '^start' file.txt
+
+
+Match lines that end with a string:
+        grep 'end$' file.txt
+
+
+Case-insensitive search:
+        grep -i 'pattern' file.txt
+
+
+Count the number of matching lines:
+        grep -c 'pattern' file.txt
+
+
+Invert match (lines not containing the pattern):
+        grep -v 'pattern' file.txt
+
+
+Recursive search through directories:
+        grep -r 'pattern' directory/
+
+
+Search for whole words:
+        grep -w 'word' file.txt
+
+
+Highlight matching text:
+        grep --color 'pattern' file.txt
+
+
+-------------  sed - Stream Editing with Regex ----------------------------
+
+Replace text matching a pattern:
+        sed 's/pattern/replacement/' file.txt
+
+Replace globally in a line:
+        sed 's/pattern/replacement/g' file.txt
+
+
+Delete lines matching a pattern:
+        sed '/pattern/d' file.txt
+
+Print lines matching a pattern:
+        sed -n '/pattern/p' file.txt
+
+
+Insert text before lines matching a pattern:
+        sed '/pattern/i\new_text' file.txt
+
+
+Append text after lines matching a pattern:
+        sed '/pattern/a\new_text' file.txt
+
+
+Replace text between two patterns:
+        sed '/start/,/end/s/pattern/replacement/g' file.txt
+
+
+--------------- awk - Pattern Scanning and Processing ------------------------
+
+Print lines matching a regex:
+        awk '/regex_pattern/ {print}' file.txt
+
+Print specific fields based on a regex:
+        awk '/regex_pattern/ {print $1, $3}' file.txt
+
+Perform actions on matching lines:
+        awk '/regex_pattern/ {action}' file.txt
+
+
+Match lines beginning with a string:
+        awk '/^start/ {print}' file.txt
+
+
+Match lines ending with a string:
+        awk '/end$/ {print}' file.txt
+
+--------------------- find - Search Files/Directories Using Regex--------------------
+
+Find files matching a regex:
+        find . -regex '.*pattern.*'
+
+Find files starting with a specific string:
+        find . -regex './start.*'
+
+Find files ending with a specific string:
+        find . -regex '.*end$'
+
+
+----------------- egrep (Extended grep) -------------
+
+Use extended regex:
+        egrep 'regex_pattern' file.txt
+
+Match multiple patterns:
+        egrep 'pattern1|pattern2' file.txt
+
+
+-------------  perl - Regex Powerhouse ----------------------
+
+Match and print lines:
+        perl -ne 'print if /pattern/' file.txt
+
+Find and replace text:
+        perl -pe 's/pattern/replacement/g' file.txt
+
+Delete lines matching a pattern:
+        perl -ne 'print unless /pattern/' file.txt
+
+
+-------------------  cut - Extract Based on Delimiters ----------------------
+
+Extract specific fields using regex:
+        cut -d' ' -f1-3 file.txt | grep 'regex_pattern'
+
+
+
+------------------  xargs - Process Output with Regex ----------------------------
+
+Filter and process files:
+        grep -l 'pattern' *.txt | xargs -I {} mv {} /target_directory/
+
+
+-----------------  sort - Custom Sorting  --------------------------------
+
+Sort lines matching a regex:
+        grep 'regex_pattern' file.txt | sort
+
+
+----------------  tr - Translate or Delete Characters  -------------------------
+
+Remove characters matching a regex:
+        echo "example123" | tr -d '[0-9]'
+
+
+----------- Real-World Examples for SDEs ---------------
+
+
+Search for TODOs in code files:
+        grep -r 'TODO' *.py
+
+
+Find lines containing function definitions in Python files:
+        grep -E 'def [a-zA-Z_][a-zA-Z0-9_]*' *.py
+
+
+Extract IP addresses from a log file:
+        grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' access.log
+
+
+Count occurrences of a specific regex pattern:
+        grep -o 'pattern' file.txt | wc -l
+
+
+Validate file naming conventions:
+        find . -type f | grep -vE '^[a-zA-Z0-9_-]+\.[a-zA-Z]{2,4}$'
