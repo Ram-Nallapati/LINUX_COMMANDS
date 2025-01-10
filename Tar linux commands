@@ -1,0 +1,179 @@
+The tar command in Linux is used to create, extract, compress, and manage archive files. Below is a comprehensive list of tar commands.
+tailored for a Software Development Engineer (SDE) role:
+
+
+
+-------------- Basic Commands -----------------------
+
+Create a tar archive:
+        tar -cvf archive_name.tar file1 file2 file3
+
+
+Extract a tar archive:
+        tar -xvf archive_name.tar
+
+
+List the contents of a tar archive:
+        tar -tvf archive_name.tar
+
+
+Compress and create a tar archive (gzip):
+        tar -czvf archive_name.tar.gz file1 file2 file3
+
+
+Extract a compressed tar archive (gzip):
+        tar -xzvf archive_name.tar.gz
+
+
+Compress and create a tar archive (bzip2):
+        tar -cjvf archive_name.tar.bz2 file1 file2 file3
+
+
+Extract a compressed tar archive (bzip2):
+        tar -xjvf archive_name.tar.bz2
+
+
+Compress and create a tar archive (xz):
+        tar -cJvf archive_name.tar.xz file1 file2 file3
+
+
+Extract a compressed tar archive (xz):
+        tar -xJvf archive_name.tar.xz
+
+
+
+-------------------- Advanced Commands --------------------
+
+
+Add a file to an existing tar archive:
+        tar -rvf archive_name.tar new_file
+
+
+Extract specific files from a tar archive:
+        tar -xvf archive_name.tar file1 file2
+
+
+Create a tar archive of an entire directory:
+        tar -cvf archive_name.tar directory_name/
+
+
+Extract a specific directory from a tar archive:
+        tar -xvf archive_name.tar directory_name/
+
+
+Create a tar archive while excluding certain files or directories:
+        tar --exclude='*.log' -cvf archive_name.tar directory_name/
+
+
+Extract files to a specific directory:
+        tar -xvf archive_name.tar -C target_directory/
+
+
+Verify the contents of a tar archive:
+        tar -tvf archive_name.tar
+
+
+Test the integrity of a tar archive:
+        tar -tvf archive_name.tar > /dev/null
+
+
+-------------- Compression Options --------------------------
+
+Create a tar archive with maximum compression (gzip):
+        tar -czvf archive_name.tar.gz --gzip-fast file1 file2
+
+
+Create a compressed tar archive using the zstd algorithm:
+        tar --zstd -cf archive_name.tar.zst file1 file2
+
+
+Extract a tar archive compressed with zstd:
+        tar --zstd -xf archive_name.tar.zst
+
+
+
+------------------------ Working with Remote Files --------------------------------
+
+
+Create a tar archive and send it to a remote server:
+        tar -czvf - directory_name/ | ssh user@remote_host 'cat > archive_name.tar.gz'
+
+
+Extract a tar archive directly from a remote server:
+        ssh user@remote_host 'cat archive_name.tar.gz' | tar -xzvf -
+
+
+Backup a directory to a remote server:
+        tar -czvf - directory_name/ | ssh user@remote_host 'cat > backup.tar.gz'
+
+
+
+----------------------  Incremental Backups -----------------------------
+
+Create an incremental backup (first full backup):
+        tar -cvf archive_name.tar --listed-incremental=snapshot_file directory_name/
+
+
+Create an incremental backup (subsequent backups):
+        tar -cvf incremental_backup.tar --listed-incremental=snapshot_file directory_name/
+
+
+Extract files from an incremental backup:
+        tar -xvf incremental_backup.tar --incremental
+
+
+------------------------ Debugging and Analysis -----------------------------------
+
+Find and extract files matching a pattern:
+        tar -xvf archive_name.tar --wildcards '*.log'
+
+Check file size in tar archive without extracting:
+        tar -tvf archive_name.tar | grep file_name
+
+Exclude symbolic links while creating a tar archive:
+        tar -cvf archive_name.tar --exclude='*.symlink' directory_name/
+
+
+Show progress during extraction or compression:
+        tar -czvf archive_name.tar.gz --progress directory_name/
+
+
+----------- Combining with Other Commands ------------------
+
+Archive and compress a directory using find:
+        find directory_name/ -type f -name '*.txt' | tar -czvf archive_name.tar.gz -T -
+
+Split a large tar archive into smaller chunks:
+        tar -cvf - large_directory/ | split -b 500M - archive_part_
+
+
+Join and extract split tar archives:
+        cat archive_part_* | tar -xvf -
+
+
+Extract a tar archive and filter contents using grep:
+        tar -xvf archive_name.tar | grep 'keyword'
+
+
+Compress a tar archive using a specific compression level:
+        tar -czvf archive_name.tar.gz --gzip-level=9 directory_name/
+
+
+
+------ Miscellaneous -----------
+
+Remove files after creating a tar archive:
+        tar -cvf archive_name.tar --remove-files file1 file2
+
+Exclude multiple patterns while creating a tar archive:
+        tar --exclude='*.log' --exclude='*.tmp' -cvf archive_name.tar directory_name/
+
+Append a file to an existing tar archive:
+        tar -rvf archive_name.tar new_file
+
+Compress multiple directories into separate tar archives:
+        for dir in */; do tar -czvf "${dir%/}.tar.gz" "$dir"; done
+
+
+Extract a tar archive only if newer files are present:
+        tar -xvf archive_name.tar --keep-newer-files
