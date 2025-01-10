@@ -1,0 +1,186 @@
+------------------------  Processor Information Commands  ---------------------------------
+
+
+Get processor architecture information:
+        uname -m
+
+
+Display detailed CPU information:
+        cat /proc/cpuinfo
+
+
+Show CPU architecture details:
+        lscpu
+
+
+Check the number of CPU cores:
+        nproc
+
+
+View system hardware architecture:
+        arch
+
+Measure CPU speed in real-time:
+        watch -n 1 "cat /proc/cpuinfo | grep 'MHz'"
+
+
+Check the processor's cache information:
+        lscpu | grep -i cache
+
+
+
+
+---------------------   Performance and Usage Monitoring   ---------------------------------
+
+
+Monitor CPU usage in real time:
+        top
+
+
+Show a dynamic display of CPU usage (better view):
+        htop
+
+
+View CPU usage history graphically:
+        mpstat -P ALL
+
+
+Display processor load average:
+        uptime
+
+
+Monitor real-time system resource usage (CPU, memory, disk):
+        vmstat 1
+
+
+Show per-core CPU usage:
+        sar -u -P ALL
+
+
+
+
+
+--------------------- Processor Affinity and Priority --------------------------
+
+
+
+Set CPU affinity for a process:
+        taskset -cp <CPU_mask> <PID>
+
+
+Start a program with specific CPU affinity:
+        taskset -c <CPU_cores> command
+
+
+Change the priority of a process:
+        renice -n <priority> -p <PID>
+
+
+Run a command with a specific nice value:
+        nice -n <priority> command
+
+
+---------------- Processor Power Management -------------------
+
+
+Check CPU frequency scaling information:
+        cpupower frequency-info
+
+
+Set CPU frequency to a specific governor:
+        cpupower frequency-set -g <governor>
+
+
+Monitor CPU temperature:
+        sensors
+
+
+--------------- Multi-threading and Parallelism -------------------
+
+Run a multi-threaded program:
+        ./program_name -t <number_of_threads>
+
+
+Show current threads of a process:
+        ps -eLf | grep <process_name>
+
+
+Limit the number of threads for a process:
+        export OMP_NUM_THREADS=<number>
+
+
+Check processor virtualization support:
+        egrep -o '(vmx|svm)' /proc/cpuinfo
+
+
+------------------- Debugging and Profiling CPU Performance --------------------------
+
+
+Profile CPU performance with perf:
+        perf stat <command>
+
+
+Check CPU-bound processes:
+        pidstat -u
+
+
+Trace system calls and signals for a process:
+        strace -p <PID>
+
+
+Check for bottlenecks with top or htop:
+        htop
+
+
+Analyze resource usage for a process:
+        perf top
+
+
+Generate flame graphs for performance debugging:
+        perf script | flamegraph.pl > output.svg
+
+
+-------------------- Miscellaneous Useful Commands -------------
+
+Check overall system load:
+        cat /proc/loadavg
+
+
+Count running processes and threads:
+        ps -eo pid | wc -l
+
+
+View real-time process resource consumption:
+        iostat -c
+
+
+Monitor CPU interrupts:
+        cat /proc/interrupts
+
+
+Measure time taken by a process:
+        time <command>
+
+
+
+---------------------- For SDE-Specific Work ------------------
+
+
+Build multi-threaded C/C++ programs using gcc:
+        gcc -o program program.c -lpthread
+
+
+Simulate CPU workload:
+        stress --cpu 4
+
+
+Generate random workloads for testing:
+        stress-ng --cpu 2 --timeout 10s
+
+
+Inspect CPU usage during development:
+        dstat -c
+
+
+Use Docker to limit CPU resources:
+        docker run --cpus="2" <image_name>
