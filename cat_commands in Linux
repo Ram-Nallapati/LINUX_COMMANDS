@@ -1,0 +1,65 @@
+-------------- Cat Commands --------------------------
+
+Display the contents of a file:
+      cat filename
+
+Display multiple files:
+      cat file1 file2
+
+
+Create a new file:
+    cat > filename
+
+Append to a file:
+    cat >> filename
+
+
+Display line numbers:
+      cat -n filename
+
+
+Suppress repeated empty lines:
+      cat -s filename
+
+
+Display end-of-line characters ($):
+    cat -E filename
+
+
+Show tab characters as ^I:
+    cat -T filename
+
+
+Concatenate files and redirect output:
+      cat file1 file2 > merged_file
+
+
+
+View a binary file:
+      cat filename | hexdump -C
+
+
+-------------------  Combining with Other Commands ------------------------
+
+Paginate output (with less or more):
+      cat filename | less
+      cat filename | more
+
+
+Count lines, words, and characters (with wc):
+      cat filename | wc
+
+
+
+Find a pattern in a file (with grep):
+      cat filename | grep "pattern"
+
+
+Sort lines in a file:
+      cat filename | sort
+
+
+Write to a file and read simultaneously:
+        cat > file.txt <<EOF
+        This is a test.
+        EOF
