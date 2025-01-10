@@ -1,0 +1,192 @@
+View all environment variables:
+        printenv
+
+
+View a specific environment variable:
+        echo $VARIABLE_NAME
+
+
+Set an environment variable (session-only):
+        export VARIABLE_NAME=value
+
+
+Set a permanent environment variable (add to ~/.bashrc, ~/.bash_profile, or /etc/environment):
+        echo 'export VARIABLE_NAME=value' >> ~/.bashrc
+        source ~/.bashrc
+
+
+Remove an environment variable:
+        unset VARIABLE_NAME
+
+
+Check the current shell:
+        echo $SHELL
+
+Check the current user:
+        echo $USER
+
+
+Check the hostname:
+        echo $HOSTNAME
+
+
+------------- Path Management --------------------
+
+View the $PATH variable:
+        echo $PATH
+
+
+Add a directory to $PATH (temporary):
+        export PATH=$PATH:/new/directory
+
+
+Add a directory to $PATH (permanent):
+        echo 'export PATH=$PATH:/new/directory' >> ~/.bashrc
+        source ~/.bashrc
+
+
+Remove a directory from $PATH:
+        export PATH=$(echo $PATH | sed -e 's;:/path/to/remove;;')
+
+
+-----------------  Working with Configuration Files  ----------------------------
+
+Edit user-specific environment variables:
+        nano ~/.bashrc
+Or:
+        nano ~/.bash_profile
+
+
+
+Edit system-wide environment variables:
+        sudo nano /etc/environment
+
+
+Reload configuration files without restarting:
+        source ~/.bashrc
+
+
+----------------- Aliases and Functions --------------
+
+Create an alias for a command:
+        alias ll='ls -la'
+
+
+Make an alias permanent:
+        echo "alias ll='ls -la'" >> ~/.bashrc
+        source ~/.bashrc
+
+
+Remove an alias:
+        unalias ll
+
+
+List all active aliases:
+        alias
+
+
+--------------------- Processes and Resource Management --------------------------
+View CPU architecture:
+        echo $ARCH
+
+View the number of CPU cores
+        echo $CPU
+
+
+View memory usage:
+        echo $MEM
+
+
+View the current working directory:
+        echo $PWD
+
+
+------------- Locale and Timezone ----------------
+
+Check current locale settings:
+        locale
+
+Change locale settings (temporary):
+        export LANG=en_US.UTF-8
+
+Set the timezone:
+        sudo timedatectl set-timezone America/New_York
+
+
+------------------ Developer-Specific Environment Commands ------------------
+
+Set the Java home variable:
+        export JAVA_HOME=/path/to/java
+        export PATH=$PATH:$JAVA_HOME/bin
+
+
+Set the Python version:
+        export PYTHON_VERSION=3.8
+        alias python=python3.8
+
+
+Check the GCC version:
+        gcc --version
+
+
+Set the Node.js version using nvm:
+        nvm use 16
+
+
+---------- Docker and Containers -------------------
+
+Set Docker environment variables:
+        export DOCKER_HOST=tcp://127.0.0.1:2375
+        export DOCKER_CERT_PATH=/path/to/certs
+
+
+Check Docker environment:
+        docker info
+
+
+--------------------  Environment Debugging and Troubleshooting  ----------------------------------
+
+Check all exported variables in the current session:
+        env
+
+
+Trace environment variable usage in a script:
+        bash -x script.sh
+
+
+Debug shell startup files:
+        bash --login -x
+
+
+------------- Networking and System Variables ------------
+
+
+Check the current IP address:
+        echo $IP
+
+
+Set a proxy environment variable:
+        export http_proxy=http://proxy.server:port
+        export https_proxy=https://proxy.server:port
+
+
+Unset a proxy variable:
+        unset http_proxy https_proxy
+
+
+Check hostname and domain name:
+        hostnamectl
+
+
+---------------- Script-Specific Environments ----------------------
+
+Pass environment variables to a script:
+        VARIABLE_NAME=value ./script.sh
+
+
+Export variables in a script:
+        export VARIABLE_NAME=value
+
+
+Load environment variables from a file:
+        source /path/to/env_file
