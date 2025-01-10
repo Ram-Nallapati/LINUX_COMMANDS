@@ -1,0 +1,197 @@
+-----------1. Basic Network Configuration and Information --------------
+
+
+ifconfig:  View and configure network interfaces (deprecated, replaced by ip).
+
+ip addr:   Display or manipulate IP addresses.
+
+ip link:   Show or modify device attributes.
+
+ip route:  View and manage routing tables.
+
+nmcli:    Manage network connections (NetworkManager).
+
+hostname:  Show or set the hostname of the machine.
+
+ping [hostname/IP]:   Test connectivity to a host.
+
+traceroute [hostname/IP]: Trace the route packets take to a host.
+
+netstat: View active connections, routing tables, etc. (deprecated, use ss).
+
+ss: Display socket statistics and active connections.
+
+arp: Display or manipulate the ARP table.
+
+
+-------------------  DNS and Name Resolution ------------------
+
+nslookup [hostname]: Query DNS for domain information.
+
+dig [domain]: Perform DNS queries (more advanced than nslookup).
+
+host [domain/IP]: Perform DNS lookups
+
+
+----------------------  Testing Network Connectivity --------------------
+
+curl [URL]: Transfer data from or to a server.
+
+wget [URL]: Download files from a URL.
+
+nc (Netcat): Open TCP/UDP connections and test ports.
+
+Example: nc -zv [hostname] [port] (Check if a port is open).
+
+telnet [hostname] [port]: Test connectivity to a specific port (useful for debugging).
+
+
+
+----------------------------- Network Traffic Analysis  -----------------------
+
+tcpdump: Capture and analyze packets.
+         Example: tcpdump -i eth0 port 80.
+
+wireshark: GUI tool for packet analysis.
+
+iftop: View real-time network bandwidth usage.
+
+nethogs: Monitor network usage per process.
+
+netcat: Capture, analyze, and debug network data.
+
+vnstat: Display network usage statistics.
+
+
+
+--------------------------  Port Scanning and Network Discovery  -------------------------------
+
+nmap: Scan networks and discover hosts/services.
+
+Example: nmap -p 1-65535 [IP] (Scan all ports).
+
+fping: Ping multiple hosts in a subnet.
+
+arp-scan: Discover devices on the local network.
+
+ip neigh: Show the ARP table
+
+
+
+
+ ---------------------------  Port Scanning and Network Discovery  -----------------------------
+
+nmap: Scan networks and discover hosts/services.
+
+Example: nmap -p 1-65535 [IP] (Scan all ports).
+
+fping: Ping multiple hosts in a subnet.
+
+arp-scan: Discover devices on the local network.
+
+ip neigh: Show the ARP table.
+
+
+
+
+----------------------------  Firewall and Security ----------------------
+
+iptables: Manage firewall rules.
+      Example: iptables -L (List all rules).
+
+ufw: Simplified firewall management (default in Ubuntu).
+      Example: ufw allow 22 (Allow SSH).
+
+fail2ban: Monitor logs and ban malicious IPs automatically.
+
+openssl: Manage SSL/TLS connections.
+      Example: openssl s_client -connect [hostname]:443.
+
+
+
+
+------------------------------  File Transfer and Remote Access  -------------------------------
+
+scp: Securely copy files between hosts.
+      Example: scp file.txt user@host:/path.
+
+rsync: Synchronize files between systems.
+      Example: rsync -avz source/ user@host:/destination/.
+
+ftp: Transfer files using FTP.
+
+sftp: Secure FTP client.
+
+ssh: Securely access remote machines.
+      Example: ssh user@host.
+
+
+
+
+
+
+
+
+-----------------------------------------Performance Testing and Stress Testing --------------------------------------------------------
+
+iperf: Measure network performance.
+      Example: iperf3 -c [server IP].
+
+ab: Apache benchmark tool for HTTP performance.
+      Example: ab -n 100 -c 10 http://example.com/.
+
+wrk: High-performance HTTP benchmarking tool.
+      Example: wrk -t12 -c400 -d30s http://example.com/.
+
+
+
+
+
+
+-------------------------------  Debugging Network Issues --------------------------
+
+mtr [hostname]: Combines ping and traceroute for detailed diagnostics.
+
+ethtool [interface]: Display and modify Ethernet device settings.
+
+route: View or set static routes (deprecated, use ip route).
+
+curl -I [URL]: Fetch HTTP headers for debugging.
+
+lsof -i: List processes using network ports.
+
+dstat: Monitor network bandwidth, disk usage, etc.
+
+
+
+
+
+------------------------------   Network Utilities  ---------------------------
+
+whois [domain]: Get domain registration info.
+
+curl -X [HTTP_METHOD] [URL]: Perform HTTP requests.
+
+tshark: CLI version of Wireshark for packet analysis.
+
+traceroute6: Trace the route for IPv6 packets.
+
+ping6: Test connectivity over IPv6.
+
+nm-tool: Show network interface details
+
+
+
+
+
+
+
+-------------------------------  Advanced Networking  --------------------------
+
+ip netns: Manage network namespaces for containerized applications.
+
+bridge: Display or manipulate bridge addresses.
+
+tc: Configure traffic control for bandwidth shaping.
+
+ss -ltnp: List all listening ports and processes.
