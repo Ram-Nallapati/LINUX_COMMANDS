@@ -1,0 +1,166 @@
+Here is a comprehensive list of Linux commands for managing user permissions that are particularly useful for an SDE (Software Development Engineer) role. 
+These commands cover file and directory permissions, ownership, access control lists (ACLs), and special permission bits.
+
+
+
+----------------  File and Directory Permission Commands --------------------------
+
+View Permissions:
+        ls -l
+        Lists files and their permissions.
+
+
+Change File Permissions (chmod):
+
+        Using symbolic notation:
+        chmod u+r file.txt    # Add read permission for the owner.
+        chmod g-w file.txt    # Remove write permission for the group.
+        chmod o+x file.txt    # Add execute permission for others.
+        chmod u=rwx,g=rw,o=r file.txt  # Set specific permissions.
+
+
+        Using numeric notation:
+        chmod 755 file.txt    # rwxr-xr-x
+        chmod 644 file.txt    # rw-r--r--
+
+
+
+Recursive Permission Change:
+        chmod -R 755 directory/
+        Change Ownership (chown):
+
+
+Change the owner of a file:
+        chown new_owner file.txt
+
+
+Change the owner and group:
+        chown new_owner:new_group file.txt
+
+
+Recursive ownership change:
+        chown -R new_owner:new_group directory/
+
+
+
+Change Group Ownership (chgrp):
+        chgrp new_group file.txt
+
+
+
+------ Access Control Lists (ACLs) ----------------------
+
+Set ACL Permissions:
+        setfacl -m u:username:rw file.txt  # Grant read and write to a specific user.
+        setfacl -m g:groupname:r file.txt  # Grant read to a specific group.
+
+
+View ACL Permissions:
+        getfacl file.txt
+
+
+Remove ACL Permissions:
+        setfacl -x u:username file.txt  # Remove ACL for a user.
+        setfacl -b file.txt             # Remove all ACLs from a file.
+
+
+Set Default ACL for Directories:
+        setfacl -d -m u:username:rw directory/
+
+
+------------- Special Permission Bits --------------------
+
+
+Set Sticky Bit (Prevents deletion by non-owners):
+        chmod +t directory/
+
+
+Set SUID (Set User ID):
+        chmod u+s file
+        Allows a file to be executed with the privileges of the file owner.
+
+
+
+Set SGID (Set Group ID):
+        chmod g+s directory/
+        Ensures that new files in a directory inherit the group ownership.
+
+
+------------------------ Checking and Managing Permissions ------------------------------
+
+Check Effective User and Group:
+        whoami       # Shows the current user.
+        id -u        # Displays the user ID.
+        id -g        # Displays the group ID.
+        groups       # Shows the groups the current user belongs to.
+
+
+Check File Information:
+        stat file.txt
+
+
+---------------- Test Permissions with su and sudo: ----------------------------
+
+Switch user:
+        su username
+
+Execute as root:
+        sudo command
+
+Check Open File Permissions:
+        lsof file.txt
+
+
+--------------------- Working with User and Group Permissions ----------------------------------
+
+Add a User to a Group:
+        usermod -aG groupname username
+
+List Users and Their Groups:
+        getent group
+
+
+------------------- Restrict File Access: ------------------------------------
+
+Create a file accessible only by the owner:
+        chmod 600 file.txt
+
+Create a directory with restricted access:
+        chmod 700 directory/
+
+
+Temporary Elevated Permissions:
+        sudo -u username command
+
+
+------------------ Advanced Permissions Management --------------------
+
+Restrict Execution:
+        chmod a-x file.sh
+
+
+Set Default Permissions (umask):
+        umask 022  # Default permissions for newly created files and directories.
+
+Audit File Access:
+        auditctl -w /path/to/file -p war -k file_access
+        ausearch -k file_access
+
+
+------------------ Combining Commands  ------------------------------
+
+
+Find Files with Specific Permissions:
+        find /path -type f -perm 644
+
+
+Bulk Change Permissions:
+        find /path -type d -exec chmod 755 {} \;
+        find /path -type f -exec chmod 644 {} \;
+
+Remove Write Permissions for Others Across a Directory:
+        chmod -R o-w directory/
+
+
+Log Permission Changes:
+        echo "chmod 644 file.txt" >> permission_changes.log
