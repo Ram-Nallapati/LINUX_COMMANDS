@@ -1,0 +1,145 @@
+---------------------- File Compression Commands ----------------------------
+
+Compress a file using gzip:
+        gzip file.txt
+
+Compress multiple files using gzip:
+        gzip file1.txt file2.txt
+
+
+Compress a directory using gzip and tar:
+        tar -czf compressed.tar.gz directory/
+
+
+Compress with maximum compression using gzip:
+        gzip -9 file.txt
+
+
+Compress a file using bzip2:
+        bzip2 file.txt
+
+
+Compress a directory using bzip2 and tar:
+        tar -cjf compressed.tar.bz2 directory/
+
+
+Compress a file using xz:
+        xz file.txt
+
+
+Compress a directory using xz and tar:
+        tar -cJf compressed.tar.xz directory/
+
+
+Compress using zip:
+        zip compressed.zip file1.txt file2.txt
+
+
+Compress a directory using zip:
+        zip -r compressed.zip directory/
+
+
+----------------- File Decompression Commands --------------------------
+
+Decompress a .gz file:
+        gunzip file.txt.gz
+
+Decompress a .tar.gz file:
+        tar -xzf compressed.tar.gz
+
+
+Decompress a .bz2 file:
+        bunzip2 file.txt.bz2
+
+
+Decompress a .tar.bz2 file:
+        tar -xjf compressed.tar.bz2
+
+
+Decompress a .xz file:
+        unxz file.txt.xz
+
+
+Decompress a .tar.xz file:
+        tar -xJf compressed.tar.xz
+
+
+Decompress a .zip file:
+        unzip compressed.zip
+
+
+Decompress a .7z file:
+        7z x compressed.7z
+
+
+
+------------------------------- Viewing and Testing Compressed Files -----------------------------
+
+
+List contents of a .tar.gz file:
+        tar -tzf compressed.tar.gz
+
+
+List contents of a .zip file:
+        unzip -l compressed.zip
+
+
+Test integrity of a .gz file:
+        gzip -t file.txt.gz
+
+
+Test integrity of a .bz2 file:
+        bzip2 -t file.txt.bz2
+
+
+Test integrity of a .zip file:
+        unzip -t compressed.zip
+
+
+Test integrity of a .7z file:
+        7z t compressed.7z
+
+
+---------------------- Advanced Compression and Decompression ----------------------------------
+
+Create a split archive using tar and gzip:
+        tar -czf - directory/ | split -b 50M - archive_part_
+
+Combine split files and decompress:
+        cat archive_part_* | tar -xzf -
+
+
+Compress using zstd:
+        zstd file.txt
+
+
+Decompress a .zst file:
+        zstd -d file.txt.zst
+
+
+Create a .tar.zst archive:
+        tar --zstd -cf compressed.tar.zst directory/
+
+
+Decompress a .tar.zst archive:
+        tar --zstd -xf compressed.tar.zst
+
+
+Compress files with password protection using zip:
+        zip -e protected.zip file.txt
+
+
+Compress files with 7z and password protection:
+        7z a -p protected.7z file.txt
+
+
+------------------------ Combining Commands ----------------------------
+
+Find and compress specific files:
+        find . -name "*.log" -exec gzip {} \;
+
+Find and archive files modified in the last 7 days:
+        find . -type f -mtime -7 -exec tar -rvf backup.tar {} \;
+
+Compress files over a certain size:
+        find . -size +10M -exec gzip {} \;
