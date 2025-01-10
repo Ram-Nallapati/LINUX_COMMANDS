@@ -1,0 +1,135 @@
+The mv command in Linux is used to move or rename files and directories. Below is a comprehensive list of useful mv command examples:
+
+------------------------- Basic mv command -------------------------------
+
+Move a file to another location:
+        mv source_file target_directory/
+
+
+Rename a file:
+        mv old_file_name new_file_name
+
+
+Move and rename a file simultaneously:
+        mv source_file target_directory/new_file_name
+
+
+Move multiple files to a directory:
+        mv file1 file2 file3 target_directory/
+
+
+Move a directory to another location:
+        mv source_directory target_directory/
+
+
+Rename a directory:
+        mv old_directory_name new_directory_name
+
+
+
+
+
+------------------------------ Using mv with Options -------------------------------------
+
+Prompt before overwriting an existing file:
+        mv -i source_file target_file
+
+
+Force move without prompting (overwrites existing files):
+        mv -f source_file target_directory/
+
+
+Do not overwrite an existing file:
+        mv -n source_file target_directory/
+
+
+Verbose output (shows what is being moved):
+        mv -v source_file target_directory/
+
+
+Move files and preserve metadata (owner, group, timestamps):
+        mv --preserve=mode,ownership,timestamps source_file target_directory/
+
+
+
+--------------------- Advanced mv commands ------------------------------------
+
+Move files with a specific extension to a directory:
+        mv *.txt target_directory/
+
+
+Move all files from a directory to another directory:
+        mv source_directory/* target_directory/
+
+
+Move all hidden files (dotfiles) to another directory:
+        mv .source_directory/* target_directory/
+
+
+Rename all files in a directory (e.g., append a prefix):
+        for file in *; do mv "$file" "prefix_$file"; done
+
+
+Move files based on a pattern:
+        mv source_directory/file_*.log target_directory/
+
+
+
+------------------- Combining mv with Other Commands ----------------------------
+
+Find and move files by type:
+        find . -type f -name "*.log" -exec mv {} target_directory/ \;
+
+
+Find files modified in the last 7 days and move them:
+        find . -type f -mtime -7 -exec mv {} target_directory/ \;
+
+
+Move files larger than 1MB to another directory:
+        find . -type f -size +1M -exec mv {} target_directory/ \;
+
+
+------------------ Error Handling with mv ---------------------
+
+Prevent overwriting files with the same name:
+        mv -n source_file target_directory/
+
+Combine mv with rsync for more safety:
+        rsync -a --remove-source-files source_file target_directory/
+rm source_file
+
+
+Interactive move for multiple files:
+        mv -i *.txt target_directory/
+
+Move and append the current date to filenames:
+        for file in *.txt; do mv "$file" "${file%.txt}_$(date +%Y%m%d).txt"; done
+
+
+Move files to a backup folder while preserving directory structure:
+        find . -name "*.log" -exec mv --parents {} backup_directory/ \;
+
+
+----------- Special Cases ----------------------
+Move files across file systems (preserves permissions):
+        mv --preserve=all source_file target_directory/
+
+
+Move files using absolute paths:
+        mv /absolute/path/to/source_file /absolute/path/to/target_directory/
+
+
+Move files to /dev/null to discard them:
+        mv file_to_delete /dev/null
+
+
+Move files and create the target directory if it doesn't exist:
+        mkdir -p target_directory && mv source_file target_directory/
+
+
+Batch rename files by replacing spaces with underscores:
+        for file in *; do mv "$file" "${file// /_}"; done
+
+
+Simulate move (dry-run) to see the effect without actual changes:
+        mv -vn source_file target_directory/
