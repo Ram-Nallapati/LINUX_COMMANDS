@@ -1,0 +1,148 @@
+The rm and rmdir commands in Linux are essential for file and directory management. Below is a comprehensive list of rm and rmdir commands tailored
+to an SDE role, focusing on common use cases, advanced options, and safety practices:
+
+------------------ rm Commands ---------------------------
+
+
+------------Basic rm commands ---------------
+
+
+Delete a single file:
+        rm file_name
+
+
+Delete multiple files:
+        rm file1 file2 file3
+
+
+Delete all files in a directory (not the directory itself):
+        rm directory_name/*
+
+
+
+Delete a directory and its contents recursively:
+        rm -r directory_name
+
+
+Delete files without prompting for confirmation:
+        rm -f file_name
+
+
+Forcefully delete a directory and its contents:
+        rm -rf directory_name
+
+
+Delete files interactively (ask for confirmation):
+        rm -i file_name
+
+
+Delete multiple files interactively:
+        rm -i file1 file2 file3
+
+
+Delete files with verbose output:
+        rm -v file_name
+
+
+Delete files matching a specific pattern:
+        rm *.log
+
+
+Delete files in subdirectories matching a pattern:
+        rm **/*.log
+
+
+Delete files older than 7 days:
+        find . -type f -mtime +7 -exec rm {} \;
+
+
+Delete files larger than 1MB:
+        find . -type f -size +1M -exec rm {} \;
+
+
+Create a dry run using ls to see files to be deleted:
+        ls *.log
+
+
+Move files to trash instead of deleting them directly (using trash-cli):
+        trash-put file_name
+
+
+Avoid accidental deletion using an alias for safety: Add this to ~/.bashrc or ~/.zshrc:
+        alias rm='rm -i'
+Then reload:
+source ~/.bashrc
+
+
+
+Delete all files except specific ones:
+        find . -type f ! -name 'keep_this_file.txt' -exec rm {} \;
+
+
+
+---------------  The rmdir command is used to remove empty directories. -------------------------------
+
+
+------- Basic rmdir command -----------------
+
+Remove an empty directory:
+        rmdir directory_name
+
+
+Remove multiple empty directories:
+        rmdir dir1 dir2 dir3
+
+
+--------------------- Advanced rmdir Usage -----------------------
+
+Remove a directory and its parent directories if empty:
+        rmdir -p parent_dir/sub_dir
+
+
+Remove multiple nested directories (only if all are empty):
+        rmdir parent_dir/{sub_dir1,sub_dir2}
+
+
+---------------------------------
+rm vs rmdir
+Use rmdir for empty directories only.
+Use rm -r for directories with contents.
+------------------------
+
+
+
+
+Delete empty directories recursively:
+        find . -type d -empty -exec rmdir {} \;
+
+
+Delete files first, then empty directories:
+        find . -type f -exec rm {} \; -o -type d -empty -exec rmdir {} \;
+
+
+
+----------------------------------
+Scenarios for SDE Role
+Codebase Cleanup
+------------------------------------
+
+
+
+Delete all .class files after compilation:
+rm -rf build/*.class
+
+
+
+Remove temporary files and logs in a project:
+        rm -rf /path/to/project/tmp/*
+        rm -rf /path/to/project/logs/*
+
+
+--------------- Data Management -------------------------------
+
+Delete old backup files:
+        find /path/to/backups -type f -mtime +30 -exec rm {} \;
+
+
+Clear cache directories:
+        rm -rf ~/.cache/*
