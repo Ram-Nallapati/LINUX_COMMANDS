@@ -1,0 +1,189 @@
+--------------------  Basic commands ---------------------------------------
+
+Search for a pattern in a file:
+        grep "pattern" filename
+
+
+Search in multiple files:
+        grep "pattern" file1 file2
+
+
+
+Search in all files in a directory:
+        grep "pattern" *
+
+
+
+Recursive search in directories:
+        grep -r "pattern" directory/
+
+
+Ignore case while searching:
+        grep -i "pattern" filename
+
+
+Search for an exact word:
+        grep -w "pattern" filename
+
+
+Display only matching lines:
+        grep "pattern" filename
+
+
+Count matching lines:
+        grep -c "pattern" filename
+
+
+
+Display line numbers with matches:
+        grep -n "pattern" filename
+
+
+
+Invert match (show lines that don’t match):
+        grep -v "pattern" filename
+
+
+---------------------- Output Formatting  ---------------------
+
+
+Highlight matches:
+            grep --color=auto "pattern" filename
+
+
+Show filenames with matches:
+            grep -l "pattern" *
+
+
+
+Show filenames without matches:
+            grep -L "pattern" *
+
+
+Show matched parts only:
+        grep -o "pattern" filename
+
+
+--------------------  Show a specified number of lines before and after matches: --------------------------
+
+Before matches:
+        grep -B 3 "pattern" filename
+After matches:
+        grep -A 3 "pattern" filename
+
+
+
+Both before and after:
+        grep -C 3 "pattern" filename
+
+
+----------------  Regular Expressions -----------------
+
+Match a pattern using regular expressions:
+        grep "patt.*ern" filename
+
+
+Use extended regular expressions:
+        grep -E "pattern1|pattern2" filename
+
+
+Search for lines starting with a string:
+        grep "^pattern" filename
+
+
+Search for lines ending with a string:
+        grep "pattern$" filename
+
+
+Match a range of characters:
+        grep "[a-z]" filename
+
+
+
+Search for lines containing digits:
+        grep "[0-9]" filename
+
+
+
+Search for empty lines:
+        grep "^$" filename
+
+
+-------------  Search in Binary Files -----------------
+
+
+Search in binary files:
+        grep -a "pattern" binaryfile
+
+
+Exclude binary file matches:
+        grep -I "pattern" *
+
+
+--------- Excluding Files or Directories ----------
+
+Exclude specific files:
+        grep --exclude="filename" "pattern" *
+
+
+Exclude files matching a pattern:
+        grep --exclude="*.log" "pattern" *
+
+
+Exclude specific directories:
+        grep --exclude-dir="dirname" -r "pattern" *
+
+
+-------  Combining with Other Commands -----
+
+Find all processes containing a keyword:
+        ps aux | grep "keyword"
+
+
+Find open ports using netstat and grep:
+        netstat -tuln | grep LISTEN
+
+
+Filter log files:
+        tail -f logfile | grep "ERROR"
+
+
+Search for a string in compressed files (with zgrep):
+        zgrep "pattern" compressed_file.gz
+
+
+---------  Performance Options ---------------
+
+Suppress error messages:
+        grep "pattern" filename 2>/dev/null
+
+
+Search with a specific file size limit:
+        grep -m 10 "pattern" filename
+
+
+Use multiple threads for faster search:
+        grep --threads=4 -r "pattern" directory/
+
+
+----------  Practical Examples -------------
+
+
+Search for IP addresses in a file:
+        grep -E "[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+" filename
+
+
+Search for specific HTTP status codes in logs:
+        grep "404" /var/log/apache2/access.log
+
+
+Search for commented lines in a file:
+        grep "^#" filename
+
+
+Search for error messages in system logs:
+        grep -i "error" /var/log/syslog
+
+
+Find configuration settings:
+        grep "setting_name" /etc/config_file
