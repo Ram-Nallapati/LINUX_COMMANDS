@@ -1,0 +1,87 @@
+-------------------Basic cd commands -----------------------------
+
+cd [directory]: Change the current directory to the specified path.
+
+Example: cd /home/user/Documents.
+cd: Change to the user's home directory.
+
+Equivalent to: cd ~.
+cd ~: Navigate directly to the home directory.
+
+cd -: Switch to the previous directory you were in
+
+
+cd ..: Move up one directory (to the parent directory).
+      Example: If you're in /home/user/Documents, cd .. moves to /home/user.
+
+cd ../..: Move up two levels in the directory hierarchy.
+      Example: From /home/user/Documents, cd ../.. moves to /home
+
+
+
+
+---------------------------   Using Relative and Absolute Paths  ----------------------------
+
+Relative Path: Use paths relative to your current directory.
+      Example: cd folder/subfolder.
+
+Absolute Path: Use the full path from the root directory.
+      Example: cd /var/www/html.
+
+
+
+------------------------   Working with Special Symbols ------------------------------------
+
+cd ~username: Change to another user's home directory.
+      Example: cd ~guest navigates to /home/guest.
+
+cd ./: Stay in the current directory (does nothing).
+
+cd /: Navigate to the root directory
+
+
+
+
+---------------------------  Advanced Techniques  ------------------------
+
+cd $(command): Use command substitution to navigate to directories dynamically.
+      Example: cd $(pwd) navigates to the current directory (no effect).
+
+cd $(dirname file_path): Change to the directory containing a specific file.
+      Example: cd $(dirname /path/to/file.txt).
+
+cd -P: Follow the physical directory structure, ignoring symbolic links.
+      Example: If /home/user/link is a symlink to /var/log, cd -P /home/user/link takes you to /var/log.
+
+cd -- [directory]: Use -- to handle directories with names that start with a hyphen (-).
+      Example: cd -- -example-dir.
+
+
+
+
+------------------------  Combining with Other Commands ----------------------------
+
+pushd [directory]: Change directory and save the previous one on the stack.
+
+popd: Return to the last directory saved by pushd.
+
+pwd: Display the current working directory after using cd.
+
+ls + cd: Combine to navigate and list directories.
+      Example: ls /etc && cd /etc.
+
+
+Aliases: Create shortcuts for common cd commands.
+      Example: alias docs="cd ~/Documents".
+
+
+
+
+
+Command Examples
+Go to the user's home directory: cd
+Navigate to the root directory: cd /
+Navigate to the parent directory: cd ..
+Switch between two directories: cd -
+Navigate using relative paths: cd folder/subfolder
+Navigate using an absolute path: cd /var/log
