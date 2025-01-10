@@ -1,0 +1,181 @@
+-------------  Sort Commands --------------------
+
+
+Sort the contents of a file:
+    sort filename
+
+
+Sort multiple files:
+        sort file1 file2
+
+
+Sort the output of a command:
+        echo -e "3\n1\n2" | sort
+
+
+--------------  Sorting Order and Options ---------------------
+
+Sort in reverse order:
+        sort -r filename
+
+
+Sort numerically (useful for numbers):
+        sort -n filename
+
+
+Sort by the length of lines:
+        sort -l filename
+
+
+Sort alphabetically (default):
+        sort -d filename
+
+
+Sort case-insensitively:
+        sort -f filename
+
+
+
+Sort by month name (e.g., Jan, Feb):
+        sort -M filename
+
+
+Sort by day of the week:
+        sort -D filename
+
+
+--------------------  Advanced Sorting Options  -----------------------
+
+Sort based on a specific field (column):
+        sort -k 2 filename
+(This will sort based on the second column in the file).
+
+
+Sort with a custom delimiter (e.g., comma ,):
+        sort -t, -k 2 filename
+
+
+Sort in random order:
+        sort -R filename
+
+
+Sort by multiple keys (columns):
+        sort -k 2,2 -k 1,1 filename
+
+
+Sort using a specific locale (e.g., C, en_US):
+        sort -l C filename
+
+
+-----------------  Handling Duplicates  -----------------------------
+
+
+Remove duplicate lines (only unique lines):
+        sort -u filename
+
+
+Suppress duplicates (print only the first occurrence of duplicates):
+        sort -u -k 2 filename
+
+
+-----------  Handling Numbers and Data Types  ----------------------
+
+
+Sort numbers in human-readable format (e.g., 1K, 2M):
+        sort -h filename
+
+
+Sort by version numbers:
+        sort -V filename
+
+
+
+----------  Output Formatting  ----------------------
+
+
+Display the result without saving to a file (default output to terminal):
+        sort filename
+
+
+Save the sorted output to a new file:
+        sort filename > sorted_file
+
+
+Save the sorted output in-place (overwrites the original file):
+        sort -o filename filename
+
+
+----------  Performance and Memory Usage ------------
+
+Sort and suppress unnecessary memory use (in-place):
+        sort --buffer-size=1M filename
+
+
+Use stable sorting (maintains the order of equal items):
+        sort -s filename
+
+
+--------------   Sorting with Commands  ------------------
+
+Sort the output of ps command by memory usage:
+        ps aux | sort -k 4 -n
+
+
+Sort the output of ls command by file size:
+        ls -l | sort -k 5 -n
+
+
+Sort a list of files by modification time:
+        ls -lt | sort
+
+---------------- Combining Sort with Other Commands -----------------------
+
+Sort and display the top N lines (e.g., top 5 largest files):
+        ls -l | sort -k 5 -n | tail -n 5
+
+
+Sort the contents of multiple files and combine them:
+        sort file1 file2 > combined_sorted.txt
+
+
+Sort the output of a command with uniq to remove duplicates:
+        echo -e "1\n2\n2\n1" | sort | uniq
+
+
+------------------- Other Useful Sorting Options --------------------
+
+Sort by month (in a human-readable date format):
+        sort -M filename
+
+Show line numbers with sorted output:
+        sort filename | nl
+
+Sort in reverse order by date (useful for log files):
+        sort -r -k 1 filename
+
+
+---------------- Practical Examples ------------------------
+
+
+Sort a file alphabetically:
+        sort myfile.txt
+
+
+Sort a file numerically in reverse order:
+        sort -nr myfile.txt
+
+
+Sort a file by the second column numerically:
+        sort -k 2,2n myfile.txt
+
+
+Sort a comma-separated file by the third column:
+        sort -t, -k 3 file.csv
+
+
+Sort and merge sorted files into one:
+        sort file1.txt file2.txt > merged_sorted.txt
+
+
+Sort and display the top 10 entries:
+        sort file.txt | head -n 10
