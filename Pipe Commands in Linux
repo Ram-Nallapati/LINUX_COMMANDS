@@ -1,0 +1,211 @@
+In Linux, the pipe (|) is a powerful feature used to pass the output of one command as the input to another command. Below is a comprehensive list 
+of useful commands and examples involving pipes:
+
+----------- Basic Pipe commands -------------------------------
+
+
+Pass the output of one command to another:
+        command1 | command2
+
+
+Display the contents of a file and pass it to another command:
+        cat file.txt | command
+
+
+---------- Common Pipe Commands ---------------
+
+
+List files in the directory and pass the output to grep:
+        ls | grep "pattern"
+
+
+Count the number of lines in a file:
+        cat file.txt | wc -l
+
+
+List all running processes and filter for a specific process:
+        ps aux | grep "process_name"
+
+
+Display the top 10 largest files:
+        ls -lh | sort -k 5 -n | tail -n 10
+
+
+
+Display the disk usage and sort it in human-readable format:
+        du -sh * | sort -h
+
+
+Display the contents of a file and show unique lines:
+        cat file.txt | sort | uniq
+
+
+Combine multiple files, sort, and remove duplicates:
+        cat file1.txt file2.txt | sort | uniq
+
+
+
+------------------Using tee with Pipes -------------------------
+
+
+Save the output of a command to a file and display it:
+        command | tee output.txt
+
+
+Append the output to a file and display it:
+        command | tee -a output.txt
+
+
+
+------------------- Using xargs with Pipes --------------------------------
+
+
+Pass output as arguments to another command:
+        echo "file1 file2" | xargs rm
+
+
+Use find and pass results to xargs for processing:
+        find . -name "*.txt" | xargs wc -l
+
+
+Use xargs to count the number of files in a directory:
+        ls | xargs -n 1 echo
+
+
+
+
+------------------------- Combining Multiple Pipes --------------------------------------
+
+
+List files, filter by pattern, sort, and display the top 5:
+        ls -l | grep "pattern" | sort -k 5 -n | head -n 5
+
+
+Display the contents of a log file, filter for errors, and count occurrences:
+        cat /var/log/syslog | grep "ERROR" | wc -l
+
+
+Find all Python files, sort them by modification time, and display the newest:
+        find . -name "*.py" | xargs ls -lt | head -n 1
+
+
+List all running processes, filter by user, and sort by memory usage:
+        ps aux | grep "username" | sort -k 4 -n
+
+
+
+---------------------- Using sort with Pipes ----------------------
+
+
+Sort a list of numbers in ascending order:
+        echo -e "5\n3\n8\n1" | sort -n
+
+
+Sort a list of strings alphabetically:
+        echo -e "banana\napple\norange" | sort
+
+
+Sort the output of ps by memory usage:
+        ps aux | sort -k 4 -n
+
+
+-------------------------- Using grep with Pipes ------------------------------------
+
+
+List files and filter for a specific type (e.g., .txt files):
+        ls | grep "\.txt"
+
+
+Show the lines containing a specific pattern in a file:
+        cat file.txt | grep "pattern"
+
+
+Find all processes and filter for a specific keyword:
+        ps aux | grep "keyword"
+
+
+------------------ Using cut with Pipes --------------------------------
+
+Extract specific columns from a file:
+        cat file.txt | cut -d " " -f 1
+
+
+Extract the first and third columns from a comma-separated file:
+        cat file.csv | cut -d "," -f 1,3
+
+
+------------------- Using awk with Pipes -----------------------
+
+Sum the values of a specific column:
+        cat file.txt | awk '{sum += $2} END {print sum}'
+
+
+Print specific columns from a CSV file:
+        cat file.csv | awk -F, '{print $1, $3}'
+
+
+Filter lines where the value in the second column is greater than 50:
+        cat file.txt | awk '$2 > 50'
+
+
+----------------------- Using head and tail with Pipes -------------------
+
+Display the first 10 lines of a file:
+        cat file.txt | head
+
+
+Display the last 10 lines of a file:
+        cat file.txt | tail
+
+
+Display the first 5 lines of a command output:
+        ps aux | head -n 5
+
+
+Display the last 5 lines of a command output:
+        ps aux | tail -n 5
+
+
+
+Display the last 10 lines of a log file as it is being written:
+        tail -f /var/log/syslog
+
+
+
+--------------------------- Using find with Pipes ----------------------------
+
+Find files and pass the result to xargs for deletion:
+        find . -name "*.log" | xargs rm
+
+
+Find and count the number of files with a specific extension:
+        find . -name "*.txt" | wc -l
+
+
+Find all .txt files and list them:
+        find . -name "*.txt" | xargs ls
+
+
+------------------- Other Useful Pipe Examples ------------------
+
+Get disk usage and sort by size:
+        du -sh * | sort -h
+
+
+Check for open ports and filter with grep:
+        netstat -tuln | grep LISTEN
+
+
+Show a running process's memory and CPU usage in real-time:
+        top -b -n 1 | head -n 20
+
+
+
+---------------------- Using sort and uniq with Pipes --------------------------------------
+
+Sort the lines in a file and display only unique ones:
+        cat file.txt | sort | uniq
+
+
+Count the occurrences of unique words in a file:
+        cat file.txt | sort | uniq -c
