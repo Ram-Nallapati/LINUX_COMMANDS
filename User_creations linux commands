@@ -1,0 +1,210 @@
+--------------------- Creating Users --------------------
+
+
+Create a new user:
+        sudo useradd username
+
+
+Create a user with a home directory (default):
+        sudo useradd -m username
+
+
+Create a user with a custom home directory:
+        sudo useradd -m -d /custom/home/dir username
+
+
+Create a user with a specific shell:
+        sudo useradd -s /bin/bash username
+
+
+Create a user and assign a specific group:
+        sudo useradd -g groupname username
+
+
+Create a user and add to multiple groups:
+        sudo useradd -G group1,group2 username
+
+
+Set a user password during creation:
+        sudo useradd -m username && sudo passwd username
+
+
+Create a user with an expiry date:
+        sudo useradd -e YYYY-MM-DD username
+
+
+Create a user with a custom user ID (UID):
+        sudo useradd -u 1050 username
+
+
+Create a system user (for services, not login):
+        sudo useradd -r username
+
+
+
+
+---------------------- Password Management ---------------------
+
+Set or change a user password:
+        sudo passwd username
+
+
+Force a user to change their password on next login:
+        sudo passwd -e username
+
+
+Lock a user account:
+        sudo passwd -l username
+
+
+Unlock a user account:
+        sudo passwd -u username
+
+
+
+------------------- User Information Management ----------------------
+
+View a user's details:
+        id username
+
+
+Modify a user's home directory:
+        sudo usermod -d /new/home/dir username
+
+
+Change a user's shell:
+        sudo usermod -s /bin/zsh username
+
+
+Add a user to a new group:
+        sudo usermod -aG groupname username
+
+
+
+Change a user's primary group:
+        sudo usermod -g newgroup username
+
+
+
+
+----------------------  Lock or unlock a user using usermod:  -------------------------------------
+
+Lock:
+        sudo usermod -L username
+
+Unlock:
+        sudo usermod -U username
+
+
+Set a user's account expiry date:
+        sudo usermod -e YYYY-MM-DD username
+
+
+Disable account expiry for a user:
+        sudo usermod -e "" username
+
+
+---------------- Deleting Users ---------------------
+
+
+Delete a user (but retain their files):
+        sudo userdel username
+
+
+Delete a user and their home directory:
+        sudo userdel -r username
+
+
+Remove a user from a group:
+        sudo gpasswd -d username groupname
+
+
+------------------- Viewing and Listing Users -----------------------
+
+View all users on the system:
+        cut -d: -f1 /etc/passwd
+
+
+View all currently logged-in users:
+        who
+
+
+View detailed login sessions:
+        w
+
+
+Check a user's last login time:
+        lastlog -u username
+
+
+---------------- Advanced User Management -------------------
+
+
+Create a user with specific GID:
+        sudo useradd -g GID username
+
+Create a user with a specific comment (description):
+        sudo useradd -c "Full Name or Description" username
+
+
+Change a user's UID:
+        sudo usermod -u 2000 username
+
+
+Change a user's GID:
+        sudo usermod -g 3000 username
+
+
+Temporarily disable user login:
+        sudo usermod -L username
+
+
+Check if a user exists:
+        getent passwd username
+
+
+---------------------- Working with /etc/passwd and /etc/shadow ---------------------------
+
+
+View the /etc/passwd file to see all user accounts:
+        cat /etc/passwd
+
+
+View the /etc/shadow file for password details:
+        sudo cat /etc/shadow
+
+
+Edit user information manually:
+        sudo vipw
+
+
+Edit the shadow file manually:
+        sudo vipw -s
+
+
+
+------------------------------ Batch User Management --------------------------------
+
+
+Create multiple users using a script:
+        for user in user1 user2 user3; do
+            sudo useradd -m $user && echo "$user:password" | sudo chpasswd
+        done
+
+
+
+Delete multiple users:
+        for user in user1 user2 user3; do
+            sudo userdel -r $user
+        done
+
+
+
+---------------------- Security and Logs ----------------------
+
+View user authentication logs:
+        sudo cat /var/log/auth.log | grep username
+
+
+Audit user account activity:
+        sudo ausearch -ua username
